@@ -10,6 +10,15 @@ module.exports = (env, argv) => {
       filename: '[name].bundle.js',
       path: resolve(__dirname, 'dist'),
     },
+    plugins: [
+      new CleanWebpackPlugin(),
+      new HtmlWebpackPlugin({
+        template: './src/index.html',
+        title: argv.mode,
+        showErrors: true,
+      }),
+      new MiniCssExtractPlugin(),
+    ],
     module: {
       rules: [
         {
@@ -25,13 +34,7 @@ module.exports = (env, argv) => {
         },
         {
           test: /\.(sc|sa|c)ss$/,
-          use: [
-            {
-              loader: MiniCssExtractPlugin.loader,
-            },
-            'css-loader',
-            'sass-loader',
-          ],
+          use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
           exclude: /node_modules/,
         },
       ],
@@ -58,18 +61,6 @@ module.exports = (env, argv) => {
   if (argv.mode === 'development') {
     config = {
       ...config,
-      plugins: [
-        new CleanWebpackPlugin(),
-        new HtmlWebpackPlugin({
-          template: './src/index.html',
-          title: 'Development',
-          showErrors: true,
-        }),
-        new MiniCssExtractPlugin({
-          filename: '[name].css',
-          chunkFilename: '[id].css',
-        }),
-      ],
       devServer: {
         port: 3000,
         overlay: true,
