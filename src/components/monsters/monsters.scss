@@ -1,0 +1,24 @@
+.monsters_container {
+  text-align: center;
+  .title {
+    margin-bottom: 18px;
+  }
+  .card_list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+    width: 80vw;
+    margin: 0 auto;
+
+    .card {
+      padding: 20px;
+      background-color: aquamarine;
+    }
+  }
+
+  .searchZ {
+    height: 30px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+}

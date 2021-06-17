@@ -1,0 +1,8 @@
+- React
+- Typescript
+- React Router
+- Jest
+- Testing Library React
+- StoryBook
+- Webpack 5
+- Scss
