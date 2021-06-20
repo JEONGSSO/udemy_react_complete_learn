@@ -1,6 +1,11 @@
 import fetch from 'node-fetch';
 
-const fetchData = (url, options = {}) =>
+type Fetch = {
+  url: string;
+  options: Object;
+};
+
+const fetchData = (url: string, options: Object = {}) =>
   fetch(url, {
     ...options,
     headers: {

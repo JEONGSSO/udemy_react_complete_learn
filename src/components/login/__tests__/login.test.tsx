@@ -14,8 +14,8 @@ describe('login test', () => {
     const passwordElem =
       screen.getByPlaceholderText('비밀번호를 입력해주세요.');
 
-    fireEvent.keyUp(emailElem, { target: { value: email } });
-    fireEvent.keyUp(passwordElem, { target: { value: password } });
+    fireEvent.change(emailElem, { target: { value: email } });
+    fireEvent.change(passwordElem, { target: { value: password } });
 
     const buttonElem = screen.getByRole('button');
     fireEvent.click(buttonElem);

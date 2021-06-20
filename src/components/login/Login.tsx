@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ChangeEvent, FormEvent, useState } from 'react';
 
 import './input.scss';
 
@@ -9,18 +9,22 @@ export default () => {
   const [password, setPassword] = useState('');
   const [login, setLogin] = useState(false);
 
-  const emailSetter = ({ target }) => {
+  const emailSetter = ({ target }: ChangeEvent<HTMLInputElement>) => {
     setEmail(target.value);
   };
 
-  const passwordSetter = ({ target }) => {
+  const passwordSetter = ({ target }: ChangeEvent<HTMLInputElement>) => {
     setPassword(target.value);
   };
 
-  const submitHandle = async (e) => {
+  const submitHandle = async (e: FormEvent) => {
     e.preventDefault();
 
-    const successLogin = (users: Array<Users> = [], email, password) =>
+    const successLogin = (
+      users: Array<Users> = [],
+      email: string,
+      password: string
+    ) =>
       users.some((user) => user.email === email && user.password === password);
 
     const fakeFetchUsers = new Promise((resolve, reject) => {
@@ -43,14 +47,14 @@ export default () => {
       <input
         type="text"
         name="eamil"
-        onKeyUp={emailSetter}
+        onChange={emailSetter}
         defaultValue={email}
         placeholder="이메일을 입력해주세요."
       />
       <input
         type="password"
         name="password"
-        onKeyUp={passwordSetter}
+        onChange={passwordSetter}
         defaultValue={password}
         placeholder="비밀번호를 입력해주세요."
       />
