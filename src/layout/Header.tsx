@@ -11,7 +11,9 @@ export default () => {
 
   return (
     <header>
-      <h1>logo</h1>
+      <Link to={`/`}>
+        <h1>logo</h1>
+      </Link>
       <nav className="nav">
         {routes.map((route) => (
           <Link className="nav_link" to={route.path} key={route.name}>
