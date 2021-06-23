@@ -1,0 +1,11 @@
+nav {
+  ul {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    li {
+      margin-right: 10px;
+    }
+  }
+}

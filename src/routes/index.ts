@@ -1,7 +1,7 @@
 import { Login } from '@/components/login';
 import { Counter } from '@/components/counter';
 import { Monsters } from '@/components/monsters';
-import { Shop } from '@/components/shop';
+import { Shop, CollectionPreview, SignPage } from '@/components/shop';
 
 export default [
   {
@@ -48,6 +48,16 @@ export default [
         name: 'mens',
         path: '/shop/mens',
         component: Login,
+      },
+      {
+        name: 'collection',
+        path: '/shop/collection',
+        component: CollectionPreview,
+      },
+      {
+        name: 'signin',
+        path: '/shop/signin',
+        component: SignPage,
       },
     ],
   },

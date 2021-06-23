@@ -9,6 +9,7 @@ module.exports = (env, argv) => {
     output: {
       filename: '[name].bundle.js',
       path: resolve(__dirname, 'dist'),
+      publicPath: '/',
     },
     plugins: [
       new CleanWebpackPlugin(),

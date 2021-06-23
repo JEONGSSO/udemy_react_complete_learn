@@ -1,6 +1,8 @@
 import React from 'react';
 import { Route, useLocation } from 'react-router-dom';
 
+import ShopHeader from '@/components/shop/ShopHeader';
+
 const RouteWithSubRoutes = (route: any) => {
   const location = useLocation();
 
@@ -10,6 +12,7 @@ const RouteWithSubRoutes = (route: any) => {
 
   return (
     <Route path={route.path} exact={route.exact}>
+      {location.pathname.includes('shop') && <ShopHeader />}
       {matchChildRoute ? <matchChildRoute.component /> : <route.component />}
     </Route>
   );

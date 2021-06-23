@@ -6,6 +6,8 @@ import { Header } from './layout';
 import routes from '@/routes';
 import { RouteWithSubRoutes } from './modules';
 
+import './App.scss';
+
 export default () => (
   <Router>
     <Header />
