@@ -18,7 +18,7 @@
     "paths": {
       "@/*": ["*"]
     },
-    "jsx": "react"
+    "jsx": "react-jsx"
   },
   "exclude": ["node_modules", "**/*.test.tsx"]
 }
