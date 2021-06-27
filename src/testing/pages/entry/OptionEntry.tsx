@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { useOrderDetails } from '@/contexts/OrderDetails';
 import Options from './Options';
 

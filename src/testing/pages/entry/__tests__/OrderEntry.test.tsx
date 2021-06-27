@@ -1,4 +1,4 @@
-import { render, screen } from '../../../../test-utils/testing-library-utils';
+import { render, screen } from '@/test-utils/testing-library-utils';
 import { rest } from 'msw';
 import { server } from '../../../mocks/server';
 
