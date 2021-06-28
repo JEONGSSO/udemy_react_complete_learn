@@ -2,7 +2,7 @@ import { render, screen } from '@/test-utils/testing-library-utils';
 import { rest } from 'msw';
 import { server } from '../../../mocks/server';
 
-import OptionEntry from '../OptionEntry';
+import OrderEntry from '../OrderEntry';
 
 describe.skip('order Test', () => {
   it('handle error for scoop and toppings routes', async () => {
@@ -15,7 +15,7 @@ describe.skip('order Test', () => {
       )
     );
 
-    render(<OptionEntry />);
+    render(<OrderEntry />);
 
     const alerts = await screen.findAllByText(/An unexpected error ocurred/i);
 

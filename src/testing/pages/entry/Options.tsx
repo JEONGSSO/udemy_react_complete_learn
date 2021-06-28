@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useOrderDetails } from '@/contexts/OrderDetails';
 
 import { fetchData, formatDollar } from '@/modules';
 import ScoopOption from './ScoopOption';
+import ToppingOption from './ToppingOption';
 
 const Options = ({ optionType }: { optionType: string }) => {
   const [items, setItems] = useState<any>([]);
@@ -30,6 +31,7 @@ const Options = ({ optionType }: { optionType: string }) => {
     toppings: 1.5,
   };
 
+  const ItemComponent = optionType === 'scoops' ? ScoopOption : ToppingOption;
   const title = optionType[0].toUpperCase() + optionType.slice(1).toLowerCase();
 
   return (
@@ -40,7 +42,7 @@ const Options = ({ optionType }: { optionType: string }) => {
         {title} total: {orderDetails.totals[optionType]}
       </p>
       {items.map((item: any) => (
-        <ScoopOption
+        <ItemComponent
           key={item.name}
           name={item.name}
           imagePath={item.imagePath}

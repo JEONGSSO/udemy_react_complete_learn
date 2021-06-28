@@ -1,9 +1,9 @@
-import { OrderDetilsProvider } from '@/contexts/OrderDetails';
+import { OrderDetailsProvider } from '@/contexts/OrderDetails';
 import { render } from '@testing-library/react';
 import { ReactElement } from 'react';
 
 const renderWithContext = (ui: ReactElement, options: any = {}) =>
-  render(ui, { wrapper: OrderDetilsProvider, ...options });
+  render(ui, { wrapper: OrderDetailsProvider, ...options });
 
 export * from '@testing-library/react';
 

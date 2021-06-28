@@ -1,16 +1,16 @@
 // import React, { useState } from 'react';
 
-// import OptionEntry from './OptionEntry';
+// import OrderEntry from './OrderEntry';
 // import OrderSummary from '../summary/OrderSummary';
-// import { OrderDetilsProvider } from '@/contexts/OrderDetails';
+// import { OrderDetailsProvider } from '@/contexts/OrderDetails';
 
 // const EntryApp = () => {
 //   const [orderPhase, setOrderPhase] = useState('inProgress');
 
-//   let Component = OptionEntry; // default to order page
+//   let Component = OrderEntry; // default to order page
 //   switch (orderPhase) {
 //     case 'inProgress':
-//       Component = OptionEntry;
+//       Component = OrderEntry;
 //       break;
 //     case 'review':
 //       Component = OrderSummary;
@@ -22,9 +22,9 @@
 //   }
 
 //   return (
-//     <OrderDetilsProvider>
+//     <OrderDetailsProvider>
 //       {<Component setOrderPhase={setOrderPhase} />}
-//     </OrderDetilsProvider>
+//     </OrderDetailsProvider>
 //   );
 // };
 

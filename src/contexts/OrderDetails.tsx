@@ -1,10 +1,4 @@
-import React, {
-  createContext,
-  useContext,
-  useState,
-  useMemo,
-  useEffect,
-} from 'react';
+import { createContext, useContext, useState, useMemo, useEffect } from 'react';
 
 import { formatDollar } from '@/modules';
 
@@ -34,7 +28,7 @@ const calculateSubtotal = (optionType: string, optionCounts: any) => {
   return optionCount * pricePerItem[optionType];
 };
 
-export const OrderDetilsProvider = (props: any) => {
+export const OrderDetailsProvider = (props: any) => {
   const [optionCounts, setOptionCounts] = useState<any>({
     scoops: new Map(),
     toppings: new Map(),
@@ -61,13 +55,13 @@ export const OrderDetilsProvider = (props: any) => {
 
   const value = useMemo(() => {
     const updateItemCount = (
-      itemName: any,
-      newItemCount: any,
-      optionType: any
+      itemName: string,
+      newItemCount: number,
+      optionType: string
     ) => {
       const newOptionCounts = { ...optionCounts };
       const optionCountsMap = optionCounts[optionType];
-      optionCountsMap.set(itemName, parseInt(newItemCount));
+      optionCountsMap.set(itemName, newItemCount);
 
       setOptionCounts(newOptionCounts);
     };

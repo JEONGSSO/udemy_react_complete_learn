@@ -1,15 +1,12 @@
-import React from 'react';
-
 const ScoopOption = ({
   name,
   imagePath,
   optionType,
-  updateItemCount,
 }: {
   name: string;
   imagePath: string;
   optionType: string;
-  updateItemCount: any;
+  updateItemCount: Function;
 }) => {
   return (
     <>

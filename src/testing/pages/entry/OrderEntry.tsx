@@ -1,7 +1,7 @@
 import { useOrderDetails } from '@/contexts/OrderDetails';
 import Options from './Options';
 
-const OptionEntry = ({ setOrderPhase }: any) => {
+const OrderEntry = ({ setOrderPhase }: any) => {
   const [orderDetails]: any = useOrderDetails();
 
   // disable order button if there aren't any scoops in order
@@ -20,4 +20,4 @@ const OptionEntry = ({ setOrderPhase }: any) => {
   );
 };
 
-export default OptionEntry;
+export default OrderEntry;
