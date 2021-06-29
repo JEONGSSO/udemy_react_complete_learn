@@ -16,7 +16,11 @@ export default () => {
       </Link>
       <nav className="nav">
         {routes.map((route) => (
-          <Link className="nav_link" to={route.path} key={route.name}>
+          <Link
+            className="nav_link"
+            to={route.path.replace(/(\/:[a-z])\w/, '')}
+            key={route.name}
+          >
             {route.name}
           </Link>
         ))}

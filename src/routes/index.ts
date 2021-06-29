@@ -11,7 +11,7 @@ export default [
   },
   {
     name: 'counter',
-    path: '/counter',
+    path: '/counter/:id?',
     component: Counter,
   },
   {

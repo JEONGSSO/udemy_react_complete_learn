@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, screen } from '@testing-library/react';
+import { render, fireEvent, screen } from '@/test-utils/testing-library-utils';
 
 import { Counter } from '../index';
 
