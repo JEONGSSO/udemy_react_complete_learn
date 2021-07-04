@@ -6,7 +6,7 @@ export type Users = {
 const users: Array<Users> = [
   {
     email: 'test@naver.com',
-    password: 'test1234',
+    password: '1234',
   },
 ];
 

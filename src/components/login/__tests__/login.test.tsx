@@ -6,7 +6,7 @@ import { Login } from '../index';
 describe('login test', () => {
   it('로그인 성공 테스트', async () => {
     const email: String = 'test@naver.com';
-    const password: String = 'test1234';
+    const password: String = '1234';
 
     render(<Login />);
 

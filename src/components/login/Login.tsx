@@ -1,27 +1,35 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
-import { FormLabel, Input } from '@material-ui/core';
+import { BaseTextField, BaseButton } from '@/layout/common';
 
 import './input.scss';
 
 import users, { Users } from './dummy';
 
+type UserData = {
+  email: string;
+  password: string;
+};
+
 export default () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [userData, setUserData] = useState<UserData>({
+    email: '',
+    password: '',
+  });
+  const [loading, setLoading] = useState(false);
   const [login, setLogin] = useState(false);
 
-  const emailSetter = ({ target }: ChangeEvent<HTMLInputElement>) => {
-    setEmail(target.value);
+  const userDataSetter = ({ target }: ChangeEvent<HTMLInputElement>) => {
+    setUserData({
+      ...userData,
+      [target.name]: target.value,
+    });
   };
 
-  const passwordSetter = ({ target }: ChangeEvent<HTMLInputElement>) => {
-    setPassword(target.value);
-  };
-
-  const submitHandle = async (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    setLoading(true);
 
-    const successLogin = (
+    const validLogin = (
       users: Array<Users> = [],
       email: string,
       password: string
@@ -38,29 +46,38 @@ export default () => {
 
     const data: any = await fakeFetchUsers.then((res) => res).catch(alert);
 
-    if (successLogin(data, email, password)) {
-      setLogin(true);
-    }
+    setLogin(validLogin(data, userData.email, userData.password));
+    setLoading(false);
   };
 
   return (
-    <form>
-      <input
-        type="text"
-        name="eamil"
-        onChange={emailSetter}
-        defaultValue={email}
+    <form onSubmit={handleSubmit}>
+      <BaseTextField
+        label="email"
+        name="email"
         placeholder="이메일을 입력해주세요."
+        onChange={userDataSetter}
+        value={userData.email}
+        disabled={loading}
       />
-      <input
+      <BaseTextField
         type="password"
+        label="password"
         name="password"
-        onChange={passwordSetter}
-        defaultValue={password}
         placeholder="비밀번호를 입력해주세요."
+        onChange={userDataSetter}
+        value={userData.password}
+        disabled={loading}
+        InputProps={{
+          inputProps: {
+            autoComplete: 'email',
+          },
+        }}
       />
-      <button onClick={submitHandle}>로그인</button>
-      <p>로그인 {login ? '성공' : '실패'}!</p>
+      <BaseButton type="submit" onClick={handleSubmit} size="medium">
+        로그인
+      </BaseButton>
+      {login && <p>로그인 성공!</p>}
     </form>
   );
 };
