@@ -5,6 +5,8 @@ enum Role {
   AUTHOR = 'AUTHOR',
 }
 
+type Combinable = number | string;
+
 const person = {
   name: 'kim',
   phoneNumber: 322,
@@ -13,8 +15,7 @@ const person = {
 };
 
 // const combine = (a: number, b: number): number => a + b;
-const combine = (a: number | string, b: number | string): number | string =>
-  a + b;
+const combine = (a: Combinable, b: Combinable): Combinable => a + b;
 
 // const person: {
 //   name: string,
