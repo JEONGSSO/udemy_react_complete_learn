@@ -1,21 +1,20 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
+import { useQuery } from '@apollo/client';
 import { BaseTextField, BaseButton } from '@/layout/common';
 
 import './input.scss';
 
 import users, { Users } from './dummy';
-
-type UserData = {
-  email: string;
-  password: string;
-};
+import { EXCHANGE_RATES } from './query';
+import { UserData } from './type';
 
 export default () => {
+  const { loading, error, data } = useQuery(EXCHANGE_RATES);
   const [userData, setUserData] = useState<UserData>({
     email: '',
     password: '',
   });
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setLoading] = useState(false);
   const [login, setLogin] = useState(false);
 
   const userDataSetter = ({ target }: ChangeEvent<HTMLInputElement>) => {
@@ -50,6 +49,10 @@ export default () => {
     setLoading(false);
   };
 
+  if (loading) {
+    return <div>loading...</div>;
+  }
+
   return (
     <form onSubmit={handleSubmit}>
       <BaseTextField
@@ -58,7 +61,7 @@ export default () => {
         placeholder="이메일을 입력해주세요."
         onChange={userDataSetter}
         value={userData.email}
-        disabled={loading}
+        disabled={isLoading}
       />
       <BaseTextField
         type="password"
@@ -67,7 +70,7 @@ export default () => {
         placeholder="비밀번호를 입력해주세요."
         onChange={userDataSetter}
         value={userData.password}
-        disabled={loading}
+        disabled={isLoading}
         InputProps={{
           inputProps: {
             autoComplete: 'email',
