@@ -1,0 +1,5 @@
+mutation setList($input: SetInput) {
+  setList(input: $input) {
+    name
+  }
+}

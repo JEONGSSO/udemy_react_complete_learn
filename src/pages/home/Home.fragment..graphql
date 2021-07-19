@@ -1,0 +1,8 @@
+fragment list on List {
+  id
+  name
+  options {
+    editable
+    active
+  }
+}

@@ -1,0 +1,9 @@
+query getList($input: Input) {
+  getList(input: $input) {
+    list {
+      id
+      name
+    }
+    totalCount
+  }
+}

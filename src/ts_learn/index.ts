@@ -56,3 +56,18 @@ const generateError = (message: string, code: number): never => {
 };
 
 generateError('An error', 500);
+
+const button = document.querySelector('button');
+
+const clickHanlder = ({ target }: MouseEvent) => {
+  console.log(target);
+};
+
+button?.addEventListener('click', clickHanlder);
+
+const add = (a: number, b: number): number => a + b;
+
+const printOutput: (a: number | string) => void = (output) =>
+  console.log(output);
+
+printOutput(add(5, 2));
