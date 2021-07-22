@@ -169,3 +169,41 @@ const useVehicle = (vehicle: Vehicle) => {
 
 useVehicle(v1);
 useVehicle(v2);
+
+// 85. Discriminated Unions - enum같은 유니크 스트링으로 분기 처리하기
+
+interface Bird {
+  type: 'bird';
+  flyingSpeed: number;
+}
+
+interface Horse {
+  type: 'horse';
+  runningSpeed: number;
+}
+
+type Animal = Bird | Horse;
+
+const moveAnimal = (animal: Animal) => {
+  let speed;
+  switch (animal.type) {
+    case 'bird':
+      speed = animal.flyingSpeed;
+      break;
+    case 'horse':
+      speed = animal.runningSpeed;
+  }
+  console.log(speed);
+};
+
+moveAnimal({ type: 'bird', flyingSpeed: 300 });
+
+// 86 Type Casting - 타입중에 undefined, null을 제거해주는 문법들 소개
+
+// const inputElem = <HTMLInputElement>document.querySelector('input')!; // 느낌표는 undefined, null를 지워준다.
+const inputElem = document.querySelector('input')! as HTMLInputElement; // 위의 <HTMLInputElement>과 같은 내용
+inputElem.value = 'Hi there';
+
+if (inputElem) {
+  (inputElem as HTMLInputElement).value = 'Hi there'; // 프로퍼티 앞에 사용할 때
+}
