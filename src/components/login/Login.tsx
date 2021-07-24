@@ -4,12 +4,12 @@ import { BaseTextField, BaseButton } from '@/layout/common';
 
 import './input.scss';
 
-import users, { Users } from './dummy';
+import dummyUsers from './dummy';
 import { EXCHANGE_RATES } from './query';
-import { UserData } from './type';
+import { UserData, ValidLogin } from './type';
 
 export default () => {
-  const { loading, error, data } = useQuery(EXCHANGE_RATES);
+  const { data, loading, error } = useQuery(EXCHANGE_RATES);
   const [userData, setUserData] = useState<UserData>({
     email: '',
     password: '',
@@ -28,24 +28,25 @@ export default () => {
     e.preventDefault();
     setLoading(true);
 
-    const validLogin = (
-      users: Array<Users> = [],
-      email: string,
-      password: string
-    ) =>
+    const validLogin = ({ users, email, password }: ValidLogin) =>
       users.some((user) => user.email === email && user.password === password);
 
     const fakeFetchUsers = new Promise((resolve, reject) => {
       setTimeout(
-        () => resolve(users),
+        () => resolve(dummyUsers),
         // reject('오류가 발생하였습니다.'),
         1000
       );
     });
 
-    const data: any = await fakeFetchUsers.then((res) => res).catch(alert);
+    const users: UserData | any = await fakeFetchUsers
+      .then((res) => res)
+      .catch(alert);
 
-    setLogin(validLogin(data, userData.email, userData.password));
+    const { email, password } = userData;
+    const isLogin = validLogin({ users, email, password });
+
+    setLogin(isLogin);
     setLoading(false);
   };
 

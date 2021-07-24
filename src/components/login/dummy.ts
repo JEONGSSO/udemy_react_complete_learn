@@ -1,9 +1,6 @@
-export type Users = {
-  email: string;
-  password: string;
-};
+import { UserData } from './type';
 
-const users: Array<Users> = [
+const users: Array<UserData> = [
   {
     email: 'test@naver.com',
     password: '1234',
