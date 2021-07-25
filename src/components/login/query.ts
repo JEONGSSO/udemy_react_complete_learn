@@ -8,3 +8,9 @@ export const EXCHANGE_RATES = gql`
     }
   }
 `;
+
+export const ToggleLoginStatus = gql`
+  query {
+    getLoginStatus @client
+  }
+`;

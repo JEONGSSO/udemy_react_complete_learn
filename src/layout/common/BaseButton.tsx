@@ -1,17 +1,11 @@
 import React from 'react';
-import { Button, ButtonProps, makeStyles } from '@material-ui/core';
+import { Button, ButtonProps } from '@material-ui/core';
 
-const useStyles = makeStyles((theme) => ({
-  button: {
-    width: theme.spacing(10),
-    height: theme.spacing(7),
-  },
-}));
+import { baseButton } from '../style';
 
 const BaseButton = ({ children, ...optionProps }: ButtonProps) => {
-  const classes = useStyles();
   return (
-    <Button {...optionProps} className={classes.button} variant="outlined">
+    <Button {...optionProps} sx={baseButton} variant="outlined">
       {children}
     </Button>
   );

@@ -1,21 +1,23 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
 import { useQuery } from '@apollo/client';
-import { BaseTextField, BaseButton } from '@/layout/common';
 
-import './input.scss';
+import { BaseTextField, BaseButton } from '@/layout/common';
+import LoginVar from '@/store/login';
 
 import dummyUsers from './dummy';
 import { EXCHANGE_RATES } from './query';
 import { UserData, ValidLogin } from './type';
 
-export default () => {
+import './input.scss';
+
+const Login = () => {
   const { data, loading, error } = useQuery(EXCHANGE_RATES);
   const [userData, setUserData] = useState<UserData>({
     email: '',
     password: '',
   });
   const [isLoading, setLoading] = useState(false);
-  const [login, setLogin] = useState(false);
+  const isLogin = LoginVar();
 
   const userDataSetter = ({ target }: ChangeEvent<HTMLInputElement>) => {
     setUserData({
@@ -46,7 +48,7 @@ export default () => {
     const { email, password } = userData;
     const isLogin = validLogin({ users, email, password });
 
-    setLogin(isLogin);
+    LoginVar(isLogin);
     setLoading(false);
   };
 
@@ -81,7 +83,9 @@ export default () => {
       <BaseButton type="submit" onClick={handleSubmit} size="medium">
         로그인
       </BaseButton>
-      {login && <p>로그인 성공!</p>}
+      {isLogin && <p>로그인 성공!</p>}
     </form>
   );
 };
+
+export default Login;

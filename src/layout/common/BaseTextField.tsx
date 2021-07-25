@@ -1,18 +1,10 @@
 import React from 'react';
-import { makeStyles, TextField, TextFieldProps } from '@material-ui/core';
+import { TextField, TextFieldProps } from '@material-ui/core';
 
-const useStyles = makeStyles((theme) => ({
-  input: {
-    marginRight: theme.spacing(1),
-  },
-}));
+import { baseTextField } from '../style';
 
 const BaseTextField = ({ ...optionProps }: TextFieldProps) => {
-  const classes = useStyles();
-
-  return (
-    <TextField className={classes.input} {...optionProps} variant="outlined" />
-  );
+  return <TextField sx={baseTextField} {...optionProps} variant="outlined" />;
 };
 
 export default BaseTextField;
