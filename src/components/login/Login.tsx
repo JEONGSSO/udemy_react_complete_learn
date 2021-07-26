@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent, useState } from 'react';
+import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { useQuery } from '@apollo/client';
 
 import { BaseTextField, BaseButton } from '@/layout/common';
@@ -12,12 +12,18 @@ import './input.scss';
 
 const Login = () => {
   const { data, loading, error } = useQuery(EXCHANGE_RATES);
+  const [count, setCount] = useState(0);
   const [userData, setUserData] = useState<UserData>({
     email: '',
     password: '',
   });
+  const [rate, setRate] = useState(data?.rates[count].rate);
   const [isLoading, setLoading] = useState(false);
   const isLogin = LoginVar();
+
+  useEffect(() => {
+    setRate(data?.rates[count].rate);
+  }, [count]);
 
   const userDataSetter = ({ target }: ChangeEvent<HTMLInputElement>) => {
     setUserData({
@@ -84,6 +90,12 @@ const Login = () => {
         로그인
       </BaseButton>
       {isLogin && <p>로그인 성공!</p>}
+      {rate}
+      <button
+        onClick={() => {
+          setCount(count + 1);
+        }}
+      ></button>
     </form>
   );
 };
