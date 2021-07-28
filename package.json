@@ -11,7 +11,8 @@
     "build": "webpack --mode=production",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
-    "codegen": "graphql-codegen --config codegen.yml"
+    "codegen": "graphql-codegen --config codegen.yml",
+    "tn": "ts-node ./src/ts_learn"
   },
   "repository": {
     "type": "git",

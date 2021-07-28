@@ -51,19 +51,21 @@ if (typeof userInput === 'string') {
   userName = userInput;
 }
 
-const generateError = (message: string, code: number): never => {
-  throw { message: message, errorCode: code };
-};
+// const generateError = (message: string, code: number): never => {
+//   throw { message: message, errorCode: code };
+// };
 
-generateError('An error', 500);
+// generateError('An error', 500);
 
-const button = document.querySelector('button');
+if (globalThis.document) {
+  const button = document.querySelector('button');
 
-const clickHanlder = ({ target }: MouseEvent) => {
-  console.log(target);
-};
+  const clickHanlder = ({ target }: MouseEvent) => {
+    console.log(target);
+  };
 
-button?.addEventListener('click', clickHanlder);
+  button?.addEventListener('click', clickHanlder);
+}
 
 const add = (a: number, b: number): number => a + b;
 
@@ -117,12 +119,29 @@ type Numberic = number | boolean;
 
 type Universal = Combinable & Numberic;
 
+// 85. Type Guard
+
+// 타입을 조건문으로 줄여나가는것
+// typeof, instanceof 사용하여 줄여나갈 수 있음
+// typeof : 원시타입 식별
+// instanceof : 생성자 함수가 반환하는 class 객체 식별
+
 const addd = (a: Combinable, b: Combinable) => {
   if (typeof a === 'string' || typeof b === 'string') {
     return a.toString() + b.toString();
   }
   return a + b;
 };
+
+// 타입 오버라이딩
+// function googggg(a:number, b:number): number;
+// function googggg(a:number, b:number): number;
+// function googggg(a:number, b:number): number;
+// function googggg(a:number, b:number): number;
+// 지금은 const 익명함수라서 안됨;
+const result = addd('kim', 'j') as string;
+result.split(' ');
+console.log('resulttttttttttt', result);
 
 type UnknownEmployee = Employee | Admin;
 
@@ -184,6 +203,7 @@ interface Horse {
 
 type Animal = Bird | Horse;
 
+// 사용자 정의 타입 가드
 const moveAnimal = (animal: Animal) => {
   let speed;
   switch (animal.type) {
@@ -196,14 +216,67 @@ const moveAnimal = (animal: Animal) => {
   console.log(speed);
 };
 
+// 사용자 정의 타입 가드 2
+const isBird = (animal: Animal): animal is Bird =>
+  !!(animal as Bird).flyingSpeed;
+
+function doSomething(animal: Animal) {
+  if (isBird(animal)) {
+    animal.flyingSpeed; // animal은 Bird 타입이 확실함
+  } else {
+    animal.runningSpeed; // animal은 Bird 타입이 아니니깐 Horse 타입이 확실함
+  }
+}
+
 moveAnimal({ type: 'bird', flyingSpeed: 300 });
 
 // 86 Type Casting - 타입중에 undefined, null을 제거해주는 문법들 소개
 
+// 확실한 값을 적용해야 할때 특히 유용하게 사용가능하다.
 // const inputElem = <HTMLInputElement>document.querySelector('input')!; // 느낌표는 undefined, null를 지워준다.
-const inputElem = document.querySelector('input')! as HTMLInputElement; // 위의 <HTMLInputElement>과 같은 내용
-inputElem.value = 'Hi there';
+if (globalThis.document) {
+  const inputElem = document.querySelector('input')! as HTMLInputElement; // 위의 <HTMLInputElement>과 같은 내용
+  inputElem.value = 'Hi there';
 
-if (inputElem) {
-  (inputElem as HTMLInputElement).value = 'Hi there'; // 프로퍼티 앞에 사용할 때
+  if (inputElem) {
+    (inputElem as HTMLInputElement).value = 'Hi there'; // 프로퍼티 앞에 사용할 때
+  }
 }
+
+// 87
+// 제네릭이랑 비슷하게 객체에서 [prop] (이름은 상관없음)의 타입을 지정해줄 수 있음.
+interface ErrorContainer {
+  [propssssss: string]: string;
+  // [zzz: string]: string // Duplicate string index signature
+}
+
+const errorBag: ErrorContainer = {
+  email: 'good',
+  1: 'good', // key를 숫자로해도 string으로 들어감
+};
+
+//89 optional chaining
+
+type Fetchhhh = {
+  id: string;
+  title?: string | undefined;
+};
+
+const fetchedUserData: Fetchhhh = {
+  id: 'asd213',
+  // title: 'good',
+};
+
+console.log(fetchedUserData?.title);
+
+// 90 nullish
+const userrrInput = '';
+// const storedDate = userInput || 'DEFAULT' // DEFAULT
+const storedDate = userInput ?? 'DEFAULT'; // ''
+
+// const good1 = (input: string | number) => {
+//   if (<string>input) {
+//     return input.length;
+//   }
+//   return input;
+// };
