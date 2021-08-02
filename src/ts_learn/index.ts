@@ -280,3 +280,19 @@ const storedDate = userInput ?? 'DEFAULT'; // ''
 //   }
 //   return input;
 // };
+
+// 93 제네릭
+const names = ['kim', 'lee'];
+
+const promise: Promise<string> = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve(123);
+  }, 2000);
+});
+
+promise.then((data) => {
+  // return data.split(' ');
+});
+
+const merge = <T, U>(objA: T, objB: U) => Object.assign(objA, objB);
+const mergeObj = merge({ name: 'kim', hobbies: ['sports', 1] }, { age: 29 });
