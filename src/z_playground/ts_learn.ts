@@ -286,7 +286,7 @@ const names = ['kim', 'lee'];
 
 const promise: Promise<string> = new Promise((resolve, reject) => {
   setTimeout(() => {
-    resolve(123);
+    resolve('123');
   }, 2000);
 });
 
