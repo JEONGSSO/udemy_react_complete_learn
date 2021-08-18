@@ -294,5 +294,14 @@ promise.then((data) => {
   // return data.split(' ');
 });
 
+// 95. Creating a Generic Function
+// 제네릭 함수로 타입선언 유연하게 하기
+
 const merge = <T, U>(objA: T, objB: U) => Object.assign(objA, objB);
 const mergeObj = merge({ name: 'kim', hobbies: ['sports', 1] }, { age: 29 });
+
+// 96. Working with Constraints
+// 제네릭에서 특정 값만 허용하고 싶을때 extends를 사용하여 선언해주면 된다!
+const merge1 = <T extends object, U extends string>(objA: T, objB: U) =>
+  Object.assign(objA, objB);
+const mergeObj1 = merge1({ name: 'kim', hobbies: ['sports', 1] }, 'good');
