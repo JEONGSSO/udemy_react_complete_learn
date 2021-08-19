@@ -305,3 +305,17 @@ const mergeObj = merge({ name: 'kim', hobbies: ['sports', 1] }, { age: 29 });
 const merge1 = <T extends object, U extends string>(objA: T, objB: U) =>
   Object.assign(objA, objB);
 const mergeObj1 = merge1({ name: 'kim', hobbies: ['sports', 1] }, 'good');
+
+interface Lengthy {
+  length: number;
+}
+
+// 제네릭에서 동적타입을 받는데 length가 있는 string | Array를 적지 않고도 간단하게 작성 가능하다.
+const countAndPrint = <T extends Lengthy>(elem: T): [T, string] => {
+  let descriptionText = 'Got no Value.';
+  if (elem.length > 0) descriptionText = `${elem.length}`;
+  return [elem, descriptionText];
+};
+
+// const zz = countAndPrint(123); // length가 없어서 에러
+const zz = countAndPrint(['good', 'zzz']);
