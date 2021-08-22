@@ -319,3 +319,48 @@ const countAndPrint = <T extends Lengthy>(elem: T): [T, string] => {
 
 // const zz = countAndPrint(123); // length가 없어서 에러
 const zz = countAndPrint(['good', 'zzz']);
+
+//98 오브젝트에서 유요한 키만 받을 수 있게 제한하는 법
+const extractAndConvert = <T extends object, U extends keyof T>(
+  obj: T,
+  key: U
+) => `Value: ${obj[key]}`;
+
+extractAndConvert({ name: 'Kim' }, 'name');
+
+// 99
+class DataStorage<T extends string | number | boolean> {
+  private data: T[] = [];
+
+  addItem(item: T) {
+    this.data.push(item);
+  }
+
+  removeItem(item: T) {
+    if (~this.data.indexOf(item)) return; // this.data.indexOf(item) === -1
+    this.data.splice(this.data.indexOf(item), 1); // -1을 제거하니까 맨 뒤 인덱스가 삭제됨
+  }
+
+  getItems() {
+    return [...this.data];
+  }
+}
+
+const textStorage = new DataStorage<string>();
+textStorage.addItem('kim');
+textStorage.addItem('good');
+textStorage.removeItem('kim');
+console.log(textStorage.getItems());
+
+const numberStorage = new DataStorage<number>();
+
+/*
+  const objStorage = new DataStorage<object>();
+  const kimObj = {name:'kim'} // call by reference라서 같은 객체 같은 주소를 넣어주어야 의도한대로 동작함
+  objStorage.addItem({name: 'kim'}) // objStorage.addItem(kimObj)
+  objStorage.addItem({name: 'good'})
+  objStorage.removeItem({name: 'kim'}) // objStorage.removeItem(kimObj)
+*/
+
+// 의도치 않은 object타입이 들어왔을때를 대비하여 제네릭 타입을 제한하는것도 좋은 방법
+// class DataStorage<T extends string | number | boolean> {
