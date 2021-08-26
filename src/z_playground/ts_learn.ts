@@ -364,3 +364,35 @@ const numberStorage = new DataStorage<number>();
 
 // 의도치 않은 object타입이 들어왔을때를 대비하여 제네릭 타입을 제한하는것도 좋은 방법
 // class DataStorage<T extends string | number | boolean> {
+
+// 100
+interface CourseGoal {
+  title: string;
+  description: string;
+  completeUntil: Date;
+}
+
+const createCourseGoal = ({
+  title,
+  description,
+  completeUntil,
+}: CourseGoal) => {
+  let courseGoal: Partial<CourseGoal> = {}; // 파티션을 사용하면 optional value로 바뀐다.
+  courseGoal.title = title;
+  courseGoal.description = description;
+  courseGoal.completeUntil = completeUntil;
+  return courseGoal;
+  // return courseGoal as CourseGoal; // 파티션이 아닌 필수값으로 만들기 위해 CourseGoal사용하여 타입 정의
+};
+
+const courseValues: CourseGoal = {
+  title: 'good',
+  description: '설명',
+  completeUntil: new Date(),
+};
+
+console.log(createCourseGoal(courseValues).title);
+
+const namess: Readonly<string[]> = ['kim', 'lee']; // readonly 제네릭으로 문자열 배열 선언
+// namess.push('asd'); // error
+// namess[3] = 'park'; // error
