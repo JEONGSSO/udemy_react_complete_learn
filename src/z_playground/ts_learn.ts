@@ -396,3 +396,9 @@ console.log(createCourseGoal(courseValues).title);
 const namess: Readonly<string[]> = ['kim', 'lee']; // readonly 제네릭으로 문자열 배열 선언
 // namess.push('asd'); // error
 // namess[3] = 'park'; // error
+
+// 102
+// 여러가지 다른 유형(다른 타입의 데이터를 리턴하는)과 함께 작동하는 형식이 있는경우 제네릭은 매우 탁월한 선택
+
+// const data = extractData<string>(user, 'userId');
+// 제네릭에 타입에따라 다른 데이터를 반환 할 수 있어 좋은 사용방법
