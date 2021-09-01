@@ -1,9 +1,25 @@
-import React, { useEffect } from 'react';
-import { Monsters } from './type';
+import React, { useEffect, useRef } from 'react';
+import { CardListProps } from './CardList';
 
-const Card = ({ monster }: { monster: Monsters }) => {
+import useIntersectionObserver from '@/hooks/useIntersectionObserver';
+
+type Props = {
+  monster: CardListProps['monsters'][0];
+  length: number;
+  index: number;
+} & Pick<CardListProps, 'fetchMonsters'>;
+
+const Card = ({ monster, length, index, fetchMonsters }: Props) => {
+  const ref = useRef<HTMLLIElement | null>(null);
+  const entry = useIntersectionObserver(ref, {});
+  const isVisible = !!entry?.isIntersecting;
+
+  useEffect(() => {
+    if (ref) fetchMonsters();
+  }, [isVisible]);
+
   return (
-    <li className="card">
+    <li className="card" ref={index === length - 1 ? ref : undefined}>
       <img
         src={`https://robohash.org/${monster.id}?set=set2&size=180x180`}
         alt="monster"

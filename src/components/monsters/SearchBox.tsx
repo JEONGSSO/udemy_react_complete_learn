@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler, useEffect, useState } from 'react';
+import React, { ChangeEventHandler } from 'react';
 
 const SearchBox = ({
   keyword,

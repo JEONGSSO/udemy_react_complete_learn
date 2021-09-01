@@ -17,7 +17,7 @@ export default () => {
 
   const fetchMonsters = async (): Promise<void> => {
     const data = await fetchData('https://jsonplaceholder.typicode.com/users');
-    setMonsters(data);
+    setMonsters((prev) => [...prev, ...data]);
   };
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -32,7 +32,7 @@ export default () => {
     <div className="monsters_container">
       <h1 className="title">Monster rolodex</h1>
       <SearchBox keyword={keyword} handleChange={handleChange}></SearchBox>
-      <CardList monsters={filteredMonsters} />
+      <CardList monsters={filteredMonsters} fetchMonsters={fetchMonsters} />
     </div>
   );
 };
