@@ -6,7 +6,7 @@ import { Monsters } from './type';
 
 export type CardListProps = {
   monsters: Monsters[];
-  fetchMonsters: () => Promise<void>;
+  fetchMonsters: () => void;
 };
 
 const CardList = ({ monsters, fetchMonsters }: CardListProps) => {

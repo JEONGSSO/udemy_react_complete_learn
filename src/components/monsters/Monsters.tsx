@@ -8,14 +8,14 @@ import { Monsters } from './type';
 import './monsters.scss';
 
 export default () => {
-  const [monsters, setMonsters] = useState<Array<Monsters>>([]);
-  const [keyword, setKeyword] = useState<string>('');
+  const [monsters, setMonsters] = useState<Monsters[]>([]);
+  const [keyword, setKeyword] = useState('');
 
   useEffect(() => {
     fetchMonsters();
   }, []);
 
-  const fetchMonsters = async (): Promise<void> => {
+  const fetchMonsters = async () => {
     const data = await fetchData('https://jsonplaceholder.typicode.com/users');
     setMonsters((prev) => [...prev, ...data]);
   };
@@ -24,7 +24,7 @@ export default () => {
     setKeyword(event.target.value);
   };
 
-  const filteredMonsters = monsters.filter((monster) =>
+  const filteredMonsters = monsters?.filter((monster) =>
     monster.name.toLowerCase().includes(keyword.toLowerCase())
   );
 

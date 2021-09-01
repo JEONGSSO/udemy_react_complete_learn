@@ -14,9 +14,9 @@ const Card = ({ monster, length, index, fetchMonsters }: Props) => {
   const entry = useIntersectionObserver(ref, {});
   const isVisible = !!entry?.isIntersecting;
 
-  useEffect(() => {
-    if (ref) fetchMonsters();
-  }, [isVisible]);
+  // useEffect(() => {
+  //   if (length) fetchMonsters();
+  // }, [isVisible]);
 
   return (
     <li className="card" ref={index === length - 1 ? ref : undefined}>
