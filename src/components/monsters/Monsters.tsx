@@ -10,22 +10,33 @@ import './monsters.scss';
 export default () => {
   const [monsters, setMonsters] = useState<Monsters[]>([]);
   const [keyword, setKeyword] = useState('');
+  const [count, setCount] = useState(8);
 
   useEffect(() => {
-    fetchMonsters();
+    (async () => {
+      const data = await fetchData(
+        `https://jsonplaceholder.typicode.com/users`
+      );
+      setMonsters([...data.splice(0, 3)]);
+    })();
   }, []);
 
   const fetchMonsters = async () => {
-    const data = await fetchData('https://jsonplaceholder.typicode.com/users');
-    setMonsters((prev) => [...prev, ...data]);
+    const data =
+      (await fetchData(
+        `https://jsonplaceholder.typicode.com/users/${count}`
+      )) ?? [];
+    setMonsters((prevMonsters) => [...prevMonsters, ...[data]]);
+    setCount(count + 1);
   };
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setKeyword(event.target.value);
   };
 
-  const filteredMonsters = monsters?.filter((monster) =>
-    monster.name.toLowerCase().includes(keyword.toLowerCase())
+  const filteredMonsters = monsters?.filter(
+    (monster) =>
+      monster.name?.toLowerCase().includes(keyword.toLowerCase()) ?? []
   );
 
   return (

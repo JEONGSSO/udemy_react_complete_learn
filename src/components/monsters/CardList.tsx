@@ -14,7 +14,7 @@ const CardList = ({ monsters, fetchMonsters }: CardListProps) => {
     <ul className="card_list">
       {monsters.map((monster, index) => (
         <Card
-          key={monster.id}
+          key={index}
           length={monsters.length}
           index={index}
           monster={monster}
