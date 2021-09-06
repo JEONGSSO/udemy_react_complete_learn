@@ -15,19 +15,21 @@ describe('login test', () => {
       </MockedProvider>
     );
 
-    waitFor(async () => {
-      const emailElem = screen.getByPlaceholderText('이메일을 입력해주세요.');
-      const passwordElem =
-        screen.getByPlaceholderText('비밀번호를 입력해주세요.');
+    const emailElem = await screen.findByPlaceholderText(
+      '이메일을 입력해주세요.'
+    );
+    const passwordElem = await screen.findByPlaceholderText(
+      '비밀번호를 입력해주세요.'
+    );
+    fireEvent.change(emailElem, { target: { value: email } });
+    fireEvent.change(passwordElem, { target: { value: password } });
 
-      fireEvent.change(emailElem, { target: { value: email } });
-      fireEvent.change(passwordElem, { target: { value: password } });
-
-      const buttonElem = screen.getByRole('button');
-      fireEvent.click(buttonElem);
-
-      const loginSuccessElem = screen.getByText('로그인 성공!');
-      expect(loginSuccessElem).toBeInTheDocument();
+    const buttonElem = await screen.findByRole('button', {
+      name: '로그인',
     });
+    fireEvent.click(buttonElem);
+
+    const loginSuccessElem = await screen.findByText('로그인 성공!');
+    expect(loginSuccessElem).toBeInTheDocument();
   });
 });
