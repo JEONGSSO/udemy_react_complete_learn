@@ -10,7 +10,7 @@ describe('total update Test', () => {
     const scoopsSubtotal = await screen.findByText('Scoops total: $', {
       exact: false,
     });
-    await waitFor(() => expect(scoopsSubtotal).toHaveTextContent('0.00'));
+    waitFor(() => expect(scoopsSubtotal).toHaveTextContent('0.00'));
   });
 
   it('update scoop subtotal when toppings change', async () => {

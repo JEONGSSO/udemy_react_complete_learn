@@ -1,9 +1,4 @@
-import fetch from 'node-fetch';
-
-type Fetch = {
-  url: string;
-  options: Object;
-};
+import fetch from 'cross-fetch';
 
 const fetchData = (url: string, options: Object = {}) =>
   fetch(url, {

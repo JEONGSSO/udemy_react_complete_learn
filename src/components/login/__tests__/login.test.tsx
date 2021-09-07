@@ -9,11 +9,7 @@ describe('login test', () => {
     const email: String = 'test@naver.com';
     const password: String = '1234';
 
-    render(
-      <MockedProvider mocks={[]} addTypename={false}>
-        <Login />
-      </MockedProvider>
-    );
+    render(<Login />);
 
     const emailElem = await screen.findByPlaceholderText(
       '이메일을 입력해주세요.'

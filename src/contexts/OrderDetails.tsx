@@ -7,8 +7,7 @@ const pricePerItem: any = {
   toppings: 1.5,
 };
 
-// @ts-ignore
-const OrderDetails = createContext();
+const OrderDetails = createContext(null);
 
 export const useOrderDetails = () => {
   const context = useContext(OrderDetails);

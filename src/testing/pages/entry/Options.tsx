@@ -1,32 +1,28 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useLazyQuery } from '@apollo/client';
 
 import { useOrderDetails } from '@/contexts/OrderDetails';
 
-import { fetchData, formatDollar } from '@/modules';
+import { formatDollar } from '@/modules';
+import { getToppings } from './toppings.query';
 import ScoopOption from './ScoopOption';
 import ToppingOption from './ToppingOption';
 
+type Items = {
+  name: string;
+  imagePath: string;
+}[];
+
 const Options = ({ optionType }: { optionType: string }) => {
-  const [items, setItems] = useState<any>([]);
-  const [error, setError] = useState<boolean>(false);
   const [orderDetails, updateItemCount]: any = useOrderDetails();
-
-  const fetchItems = async (): Promise<void> => {
-    const data = await fetchData(`http://localhost:3030/${optionType}`).catch(
-      (_) => {
-        setError(true);
-        return [];
-      }
-    );
-
-    setItems(data);
-  };
+  const [fetchToppings, { data: items, loading, error }] =
+    useLazyQuery<Items>(getToppings);
 
   useEffect(() => {
-    fetchItems();
+    fetchToppings();
   }, [optionType]);
 
-  const pricePerItem: any = {
+  const pricePerItem: Record<string, number> = {
     scoops: 2,
     toppings: 1.5,
   };
@@ -41,7 +37,7 @@ const Options = ({ optionType }: { optionType: string }) => {
       <p>
         {title} total: {orderDetails.totals[optionType]}
       </p>
-      {items.map((item: any) => (
+      {items?.map((item) => (
         <ItemComponent
           key={item.name}
           name={item.name}

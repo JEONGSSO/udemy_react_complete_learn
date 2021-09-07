@@ -41,7 +41,10 @@
     "@babel/preset-react": "^7.13.13",
     "@babel/preset-typescript": "^7.14.5",
     "@graphql-codegen/cli": "1.21.7",
+    "@graphql-codegen/introspection": "1.18.2",
     "@graphql-codegen/typescript": "1.23.0",
+    "@graphql-codegen/typescript-operations": "1.18.4",
+    "@graphql-codegen/typescript-react-apollo": "2.3.1",
     "@storybook/builder-webpack5": "^6.3.0-alpha.24",
     "@storybook/react": "^6.3.0-alpha.24",
     "@testing-library/jest-dom": "^5.12.0",
@@ -54,6 +57,7 @@
     "@types/react-router-dom": "^5.1.7",
     "babel-loader": "^8.2.2",
     "clean-webpack-plugin": "^4.0.0-alpha.0",
+    "cross-fetch": "^3.1.4",
     "css-loader": "^5.2.4",
     "dotenv-webpack": "^7.0.2",
     "eslint-plugin-jest-dom": "^3.9.0",
@@ -64,7 +68,7 @@
     "jest": "^27.0.4",
     "mini-css-extract-plugin": "^1.6.0",
     "msw": "^0.30.0",
-    "node-fetch": "^2.6.1",
+    "node-fetch": "^3.0.0",
     "node-sass": "^6.0.0",
     "prettier": "^2.3.0",
     "sass-loader": "^11.1.0",
@@ -75,9 +79,6 @@
     "webpack": "^5.37.0",
     "webpack-bundle-analyzer": "^4.4.1",
     "webpack-cli": "^4.7.0",
-    "webpack-dev-server": "^3.11.2",
-    "@graphql-codegen/typescript-operations": "1.18.4",
-    "@graphql-codegen/typescript-react-apollo": "2.3.1",
-    "@graphql-codegen/introspection": "1.18.2"
+    "webpack-dev-server": "^3.11.2"
   }
 }

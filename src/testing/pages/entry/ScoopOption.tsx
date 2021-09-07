@@ -6,7 +6,6 @@ const ScoopOption = ({
   name: string;
   imagePath: string;
   optionType: string;
-  updateItemCount: Function;
 }) => {
   return (
     <>
