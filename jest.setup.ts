@@ -7,7 +7,7 @@ beforeAll(() => server.listen());
 beforeEach(() => {
   // Ensure Apollo cache is cleared between tests.
   // https://www.apollographql.com/docs/react/api/core/ApolloClient/#ApolloClient.clearStore
-  return client.clearStore();
+  client.clearStore();
 });
 
 afterEach(() => server.resetHandlers());

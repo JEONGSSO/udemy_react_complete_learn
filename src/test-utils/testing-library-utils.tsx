@@ -1,18 +1,16 @@
-import { render, RenderOptions } from '@testing-library/react';
-import { FC, ReactElement } from 'react';
-import { ApolloProvider } from '@apollo/client';
+import { render } from '@testing-library/react';
+import { ReactElement } from 'react';
+import { MockedProvider } from '@apollo/react-testing';
 
 import { OrderDetailsProvider } from '@/contexts/OrderDetails';
-import { client } from '@/apollo/index';
 
-const AllTheProvider: FC = ({ children }) => (
-  <ApolloProvider client={client}>
-    <OrderDetailsProvider>{children}</OrderDetailsProvider>
-  </ApolloProvider>
-);
-
-const renderWithContext = (ui: ReactElement, options: RenderOptions = {}) =>
-  render(ui, { wrapper: AllTheProvider, ...options });
+const renderWithContext = (component: ReactElement, mocks?: any) => {
+  return render(
+    <MockedProvider mocks={mocks} addTypename={false}>
+      {component}
+    </MockedProvider>
+  );
+};
 
 export * from '@testing-library/react';
 

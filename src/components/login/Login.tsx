@@ -1,5 +1,4 @@
 import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
-import { useQuery } from '@apollo/client';
 
 import { BaseTextField, BaseButton } from '@/layout/common';
 import LoginVar from '@/store/login';

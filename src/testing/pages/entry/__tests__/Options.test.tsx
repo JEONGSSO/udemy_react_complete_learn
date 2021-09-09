@@ -2,7 +2,7 @@ import { render, screen } from '@/test-utils/testing-library-utils';
 
 import Options from '../Options';
 
-describe('options render Test', () => {
+describe.skip('options render Test', () => {
   it('display image scoops option from server', async () => {
     render(<Options optionType="scoops" />);
 

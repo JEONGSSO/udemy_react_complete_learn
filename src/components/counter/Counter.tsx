@@ -16,7 +16,7 @@ export default () => {
   return (
     <div>
       <button onClick={decrement}>-</button>
-      <span role="display-count">{count}</span>
+      <div>current count:{count}</div>
       <button onClick={increment}>+</button>
     </div>
   );

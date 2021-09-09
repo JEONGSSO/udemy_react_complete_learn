@@ -13,20 +13,20 @@ describe('카운터 앱', () => {
   });
 
   it('increment Click Event Call', () => {
-    const increButton = screen.getByText('+');
+    const increButton = screen.getByRole('button', { name: '+' });
 
     fireEvent.click(increButton);
-    const label = screen.getByRole('display-count');
+    const paragraphElem = screen.getByText(/current count:/i);
 
-    expect(Number(label.textContent)).toBe(1);
+    expect(paragraphElem.textContent).toBe('current count:1');
   });
 
-  it('increment Click Event Call', () => {
-    const increButton = screen.getByText('-');
+  it('decrement Click Event Call', () => {
+    const decreButton = screen.getByRole('button', { name: '-' });
 
-    fireEvent.click(increButton);
-    const label = screen.getByRole('display-count');
+    fireEvent.click(decreButton);
+    const paragraphElem = screen.getByText(/current count:/i);
 
-    expect(Number(label.textContent)).toBe(-1);
+    expect(paragraphElem.textContent).toBe('current count:-1');
   });
 });
