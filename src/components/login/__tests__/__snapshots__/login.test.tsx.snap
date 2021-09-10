@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`login test 로그인 테스트 1`] = `
+<div
+  role="textt"
+>
+  <div />
+  <div />
+</div>
+`;

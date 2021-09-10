@@ -1,5 +1,6 @@
 import React from 'react';
-import { render, fireEvent, screen } from '@/test-utils/testing-library-utils';
+import { render, fireEvent, screen } from '@testing-library/react';
+import renderWithContext from '@/test-utils/renderWithContext';
 
 import { Counter } from '../index';
 
@@ -7,7 +8,7 @@ import { Counter } from '../index';
  * @jest-environment jsdom
  */
 
-describe('카운터 앱', () => {
+describe.skip('카운터 앱', () => {
   beforeEach(() => {
     render(<Counter />);
   });

@@ -1,38 +1,16 @@
 import React from 'react';
-import { render, fireEvent, screen } from '@/test-utils/testing-library-utils';
+import { fireEvent, screen } from '@testing-library/react';
 
-import { EXCHANGE_RATES } from '../query';
+import renderWithContext from '@/test-utils/renderWithContext';
+import mocks from './login.mocks';
 import { Login } from '../index';
 
 describe('login test', () => {
   test('로그인 테스트', async () => {
-    const email: String = 'test@naver.com';
-    const password: String = '1234';
+    const email = 'test@naver.com';
+    const password = '1234';
 
-    const mocks = [
-      {
-        request: {
-          query: EXCHANGE_RATES,
-          variables: { index: 4 },
-        },
-        result: {
-          data: {
-            dog: {
-              name: 'Douglas',
-            },
-          },
-        },
-      },
-      {
-        request: {
-          query: EXCHANGE_RATES,
-          variables: { index: 8 },
-        },
-        error: new Error('Something went wrong'),
-      },
-    ];
-
-    render(<Login />, mocks);
+    renderWithContext<typeof mocks>(<Login />, mocks);
 
     const emailElem = await screen.findByPlaceholderText(
       '이메일을 입력해주세요.'
@@ -50,5 +28,8 @@ describe('login test', () => {
 
     const loginSuccessElem = await screen.findByText('로그인 성공!');
     expect(loginSuccessElem).toBeInTheDocument();
+
+    const test = await screen.findByRole('textt');
+    expect(test).toMatchSnapshot();
   });
 });
