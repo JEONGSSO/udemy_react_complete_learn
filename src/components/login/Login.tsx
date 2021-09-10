@@ -11,7 +11,7 @@ import { UserData, ValidLogin } from './type';
 import './input.scss';
 
 const Login = () => {
-  const { data, loading } = useQuery<UserData>(GET_USER_QUERY);
+  const { data, loading, error } = useQuery<UserData>(GET_USER_QUERY);
   const [userData, setUserData] = useState<UserData>({
     email: '',
     password: '',
@@ -53,9 +53,8 @@ const Login = () => {
     setLoading(false);
   };
 
-  if (loading) {
-    return <div>loading...</div>;
-  }
+  if (loading) return <div>loading...</div>;
+  if (error) <div>ERROR</div>;
 
   return (
     <form onSubmit={handleSubmit}>

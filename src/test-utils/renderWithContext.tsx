@@ -11,11 +11,11 @@ const renderWithContext = <T extends MockedResponse[]>(
   mocks?: T
 ) => {
   return render(
-    // <ApolloProvider client={client}>
-    <MockedProvider mocks={mocks} addTypename={false}>
-      {component}
-    </MockedProvider>
-    // </ApolloProvider>
+    <ApolloProvider client={client}>
+      <MockedProvider mocks={mocks} addTypename={false}>
+        {component}
+      </MockedProvider>
+    </ApolloProvider>
   );
 };
 
