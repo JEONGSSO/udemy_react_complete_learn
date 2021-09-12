@@ -1,6 +1,7 @@
 import { Login } from '@/components/login';
 import { Counter } from '@/components/counter';
 import { Monsters } from '@/components/monsters';
+import Test from '@/components/table/Test';
 import { Shop, CollectionPreview, SignPage } from '@/components/shop';
 
 export default [
@@ -13,6 +14,11 @@ export default [
     name: 'counter',
     path: '/counter/:id?',
     component: Counter,
+  },
+  {
+    name: 'table',
+    path: '/table',
+    component: Test,
   },
   {
     name: 'monsters',
