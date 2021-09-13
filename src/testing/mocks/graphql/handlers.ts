@@ -1,6 +1,17 @@
 import { graphql } from 'msw';
 
 export const handlers = [
+  // graphql.query('GetExchangeRates', (req, res, ctx) => {
+  //   return res(
+  //     ctx.data({
+  //       rates: [
+  //         { __typename: 'ExchangeRate', currency: 'AED', rate: '3.6732' },
+  //         { __typename: 'ExchangeRate', currency: 'AFN', rate: '85.815' },
+  //         { __typename: 'ExchangeRate', currency: 'ALL', rate: '103.266298' },
+  //       ],
+  //     })
+  //   );
+  // }),
   // graphql.query('toppings', (req, res, ctx) => {
   //   return res(
   //     ctx.data([

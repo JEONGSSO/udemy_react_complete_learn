@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, screen } from '@testing-library/react';
+import { fireEvent, screen, act } from '@testing-library/react';
 
 import renderWithContext from '@/test-utils/renderWithContext';
 import mocks from './login.mocks';

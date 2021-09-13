@@ -5,17 +5,24 @@ import { BaseTextField, BaseButton } from '@/layout/common';
 import LoginVar from '@/store/login';
 
 import dummyUsers from './dummy';
-import { GET_USER_QUERY } from './query';
+import { EXCHANGE_RATES } from './query';
 import { UserData, ValidLogin } from './type';
 
 import './input.scss';
 
 const Login = () => {
-  const { data, loading, error } = useQuery<UserData>(GET_USER_QUERY);
+  const { data, loading, error } = useQuery<UserData>(EXCHANGE_RATES, {
+    variables: {
+      currency: 'USD',
+    },
+  });
+
   const [userData, setUserData] = useState<UserData>({
     email: '',
     password: '',
   });
+
+  console.log(data);
 
   const [isLoading, setLoading] = useState(false);
   const isLogin = LoginVar();

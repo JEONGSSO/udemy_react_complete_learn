@@ -19,9 +19,9 @@ const cache = new InMemoryCache({
 
 export const client = new ApolloClient({
   link: createHttpLink({
-    uri: 'http://localhost:3000/graphql',
+    uri: 'https://48p1r2roz4.sse.codesandbox.io',
+    // uri: 'http://localhost:3000/graphql',
     fetch,
   }),
-  // uri: 'https://48p1r2roz4.sse.codesandbox.io',
   cache,
 });

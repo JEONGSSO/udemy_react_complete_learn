@@ -3,7 +3,7 @@ import { render, fireEvent, screen } from '@testing-library/react';
 
 import Test from '../';
 
-describe('hooks test', () => {
+describe.skip('hooks test', () => {
   it('훅 기능 테스트', async () => {
     render(<Test />);
 
