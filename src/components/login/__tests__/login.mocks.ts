@@ -1,35 +1,28 @@
-import { EXCHANGE_RATES } from '../query';
-import { MockedResponse } from '@apollo/react-testing';
-
-// const mocks: MockedResponse[] = [
-//   {
-//     request: { query: EXCHANGE_RATES },
-//     result: {
-//       data: {
-//         rates: [
-//           { currency: 'AED', rate: '3.6732' },
-//           { currency: 'AFN', rate: '85.815' },
-//           { currency: 'ALL', rate: '103.266298' },
-//         ],
-//       },
-//     },
-//   },
-// ];
+import { GET_USER_QUERY } from '../query';
+import { MockedResponse } from '@apollo/client/testing';
 
 const mocks: MockedResponse[] = [
   {
-    request: {
-      query: EXCHANGE_RATES,
-      variables: {
-        currency: 'USD',
-      },
-    },
+    request: { query: GET_USER_QUERY },
     result: {
       data: {
-        rates: [
-          { currency: 'AED', rate: '1' },
-          { currency: 'AFN', rate: '2' },
-          { currency: 'ALL', rate: '3' },
+        users: [
+          {
+            name: 'kim',
+            email: 'kim@naver.com',
+          },
+          {
+            name: 'na',
+            email: 'na@naver.com',
+          },
+          {
+            name: 'park',
+            email: 'park@naver.com',
+          },
+          {
+            name: 'lee',
+            email: 'lee@naver.com',
+          },
         ],
       },
     },

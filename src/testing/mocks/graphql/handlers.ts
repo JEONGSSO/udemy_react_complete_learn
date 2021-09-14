@@ -1,5 +1,6 @@
 import { graphql } from 'msw';
 
+// only ApolloProvider using
 export const handlers = [
   // graphql.query('GetExchangeRates', (req, res, ctx) => {
   //   return res(

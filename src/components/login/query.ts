@@ -16,10 +16,10 @@ export const ToggleLoginStatus = gql`
 `;
 
 export const GET_USER_QUERY = gql`
-  query GetUser($name: String) {
-    user {
+  query GetUser {
+    users {
+      name
       email
-      password
     }
   }
 `;

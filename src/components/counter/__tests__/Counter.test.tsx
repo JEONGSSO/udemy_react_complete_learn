@@ -1,6 +1,6 @@
 import React from 'react';
-import { render, fireEvent, screen } from '@testing-library/react';
-import renderWithContext from '@/test-utils/renderWithContext';
+import { fireEvent, screen } from '@testing-library/react';
+import { render } from '@/test-utils/renderWithContext';
 
 import { Counter } from '../index';
 

@@ -1,6 +1,6 @@
 export interface UserData {
-  email: string;
   password: string;
+  email: string;
 }
 
 export interface ValidLogin extends UserData {
