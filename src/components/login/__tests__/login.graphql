@@ -1,6 +1,0 @@
-export default query GetAllUsers {
-  users {
-    firstName
-    lastName
-  }
-}

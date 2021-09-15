@@ -8,8 +8,8 @@ import { Login } from '../index';
 
 describe('login test', () => {
   test('로그인 테스트', async () => {
-    const email = 'test@naver.com';
-    const password = '1234';
+    const email = 'kim@naver.com';
+    const password = 'kim';
 
     render<typeof mocks>(<Login />, mocks);
 

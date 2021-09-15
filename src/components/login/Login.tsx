@@ -4,16 +4,13 @@ import { useQuery } from '@apollo/client';
 import { BaseTextField, BaseButton } from '@/layout/common';
 import LoginVar from '@/store/login';
 
-import dummyUsers from './dummy';
-import { GET_USER_QUERY } from './query';
-import { UserData, ValidLogin } from './type';
+import { GET_ALL_USERS } from './query';
+import { UserData } from './type';
 
 import './input.scss';
 
 const Login = () => {
-  const { data, loading, error } = useQuery(GET_USER_QUERY);
-
-  console.log(data);
+  const { data, loading, error } = useQuery(GET_ALL_USERS);
 
   const [userData, setUserData] = useState<UserData>({
     email: '',
@@ -30,27 +27,23 @@ const Login = () => {
     });
   };
 
+  console.log(data);
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setLoading(true);
 
-    const validLogin = ({ users, email, password }: ValidLogin) =>
-      users.some((user) => user.email === email && user.password === password);
-
-    const fakeFetchUsers = new Promise((resolve, reject) => {
-      setTimeout(
-        () => resolve(dummyUsers),
-        // reject('오류가 발생하였습니다.'),
-        1000
+    const validLogin = (
+      { users = [] }: { users: UserData[] },
+      { email, password }: UserData
+    ) => {
+      console.log('users', users);
+      return users.some(
+        (user) => user.email === email && user.password === password
       );
-    });
+    };
 
-    const users: UserData | any = await fakeFetchUsers
-      .then((res) => res)
-      .catch(alert);
-
-    const { email, password } = userData;
-    const isLogin = validLogin({ users, email, password });
+    const isLogin = validLogin(data.users, userData);
 
     LoginVar(isLogin);
     setLoading(false);
@@ -87,10 +80,6 @@ const Login = () => {
         로그인
       </BaseButton>
       {isLogin && <p>로그인 성공!</p>}
-      <div role="textt">
-        <div>{data?.email}</div>
-        <div>{data?.password}</div>
-      </div>
     </form>
   );
 };
