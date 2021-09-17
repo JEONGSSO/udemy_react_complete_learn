@@ -29,7 +29,7 @@ describe('testttt', () => {
       <div>
         <label htmlFor="asd">
           username
-          <input id="asd" name="zzzz" onKeyDown={onChangeEvent}></input>
+          <input id="asd" name="zzzz" onChange={onChangeEvent}></input>
         </label>
       </div>
     );

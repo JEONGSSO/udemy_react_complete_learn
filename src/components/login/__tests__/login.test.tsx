@@ -29,8 +29,5 @@ describe('login test', () => {
 
     const loginSuccessElem = await screen.findByText('로그인 성공!');
     expect(loginSuccessElem).toBeInTheDocument();
-
-    const test = await screen.findByRole('textt');
-    expect(test).toMatchSnapshot();
   });
 });
