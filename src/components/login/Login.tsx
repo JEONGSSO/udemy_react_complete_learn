@@ -1,16 +1,16 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
-import { useQuery } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 
 import { BaseTextField, BaseButton } from '@/layout/common';
 // import LoginVar from '@/store/login';
 
-import { GET_ALL_USERS } from './query';
+import { LOGIN } from './query';
 import { UserData } from './type';
 
 import './input.scss';
 
 const Login = () => {
-  const { data, loading, error } = useQuery(GET_ALL_USERS);
+  const [login, { data, loading }] = useMutation(LOGIN);
   const [isLogin, setLogin] = useState(false);
   const [userData, setUserData] = useState<UserData>({
     email: '',
@@ -27,20 +27,18 @@ const Login = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
-    const validLogin = (
-      { users = [] }: { users: UserData[] },
-      { email, password }: UserData
-    ) => {
-      return users.every((user) => {
-        console.log('useruseruseruseruseruseruseruseruseruser', user);
-        return user.email === email && user.password === password;
-      });
-    };
-    setLogin(validLogin(data.users, userData));
+    const loginData = await login({
+      variables: {
+        email: userData.email,
+        password: userData.password,
+      },
+    });
+
+    console.log('loginDataloginDataloginDataloginData', loginData);
+    setLogin(loginData.data);
   };
 
   if (loading) return <div>loading...</div>;
-  if (error) <div>ERROR</div>;
 
   return (
     <form onSubmit={handleSubmit}>
@@ -66,7 +64,7 @@ const Login = () => {
           },
         }}
       />
-      <BaseButton type="submit" onClick={handleSubmit} size="medium">
+      <BaseButton type="submit" size="medium">
         로그인
       </BaseButton>
       {isLogin && <p>로그인 성공!</p>}

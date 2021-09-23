@@ -1,4 +1,4 @@
-import { GET_ALL_USERS, GET_USER_QUERY } from '../query';
+import { GET_ALL_USERS } from '../query';
 import { MockedResponse } from '@apollo/client/testing';
 
 const mocks: MockedResponse[] = [
@@ -22,31 +22,6 @@ const mocks: MockedResponse[] = [
           {
             email: 'lee@naver.com',
             password: 'lee',
-          },
-        ],
-      },
-    },
-  },
-  {
-    request: { query: GET_USER_QUERY },
-    result: {
-      data: {
-        users: [
-          {
-            name: 'kim',
-            email: 'kim@naver.com',
-          },
-          {
-            name: 'na',
-            email: 'na@naver.com',
-          },
-          {
-            name: 'park',
-            email: 'park@naver.com',
-          },
-          {
-            name: 'lee',
-            email: 'lee@naver.com',
           },
         ],
       },

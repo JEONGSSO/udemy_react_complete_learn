@@ -6,11 +6,10 @@ export const ToggleLoginStatus = gql`
   }
 `;
 
-export const GET_USER_QUERY = gql`
-  query GetUser {
-    users {
-      name
-      email
+export const LOGIN = gql`
+  mutation login($email: String!, $password: String!) {
+    login(email: $email, password: $password) {
+      completed
     }
   }
 `;

@@ -1,15 +1,31 @@
 import React from 'react';
-import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import { render } from '@/test-utils/renderWithContext';
-import mocks from './login.mocks';
+import { render, screen } from '@/test-utils/renderWithContext';
 import { Login } from '../index';
+import { LOGIN } from './../query';
 
 describe('login test', () => {
   test('로그인 테스트', async () => {
     const email = 'kim@naver.com';
     const password = 'kim';
+
+    const mocks = [
+      {
+        request: { query: LOGIN },
+        variables: {
+          email,
+          password,
+        },
+        result: {
+          data: {
+            login: {
+              completed: true,
+            },
+          },
+        },
+      },
+    ];
 
     render<typeof mocks>(<Login />, mocks);
 
