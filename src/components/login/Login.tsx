@@ -33,9 +33,8 @@ const Login = () => {
         password: userData.password,
       },
     });
-
     console.log('loginDataloginDataloginDataloginData', loginData);
-    setLogin(loginData.data);
+    // setLogin(loginData.data);
   };
 
   if (loading) return <div>loading...</div>;

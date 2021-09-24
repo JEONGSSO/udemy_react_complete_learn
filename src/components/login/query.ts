@@ -7,7 +7,7 @@ export const ToggleLoginStatus = gql`
 `;
 
 export const LOGIN = gql`
-  mutation login($email: String!, $password: String!) {
+  mutation login($email: string!, $password: string!) {
     login(email: $email, password: $password) {
       completed
     }

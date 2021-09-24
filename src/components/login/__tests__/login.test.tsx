@@ -17,13 +17,11 @@ describe('login test', () => {
           email,
           password,
         },
-        result: {
-          data: {
-            login: {
-              completed: true,
-            },
-          },
-        },
+        // result: {
+        //   data: {
+        //     completed: true,
+        //   },
+        // },
       },
     ];
 
