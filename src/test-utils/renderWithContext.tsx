@@ -4,11 +4,10 @@ import { ApolloProvider } from '@apollo/client';
 import { MockedProvider, MockedResponse } from '@apollo/client/testing';
 
 import { client } from '@/apollo';
-import { OrderDetailsProvider } from '@/contexts/OrderDetails';
 
-const renderWithContext = <T extends MockedResponse[]>(
+const renderWithContext = (
   component: ReactElement,
-  mocks?: T
+  mocks?: MockedResponse[]
 ) => {
   if (mocks) {
     return render(

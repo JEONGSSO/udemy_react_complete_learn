@@ -10,4 +10,3 @@ module.exports = {
   testMatch: ['**/?(*.)+(test).+(ts|tsx)'],
   testEnvironment: 'jsdom', // default node
 };
-``;

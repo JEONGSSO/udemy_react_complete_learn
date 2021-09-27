@@ -1,5 +1,5 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
-import { useQuery, useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 
 import { BaseTextField, BaseButton } from '@/layout/common';
 // import LoginVar from '@/store/login';
@@ -10,7 +10,7 @@ import { UserData } from './type';
 import './input.scss';
 
 const Login = () => {
-  const [login, { data, loading }] = useMutation(LOGIN);
+  const [login, { loading }] = useMutation(LOGIN);
   const [isLogin, setLogin] = useState(false);
   const [userData, setUserData] = useState<UserData>({
     email: '',
@@ -27,14 +27,13 @@ const Login = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
-    const loginData = await login({
+    const { data } = await login({
       variables: {
         email: userData.email,
         password: userData.password,
       },
     });
-    console.log('loginDataloginDataloginDataloginData', loginData);
-    // setLogin(loginData.data);
+    setLogin(data.isCompleted);
   };
 
   if (loading) return <div>loading...</div>;

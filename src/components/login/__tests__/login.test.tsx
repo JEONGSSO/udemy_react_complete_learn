@@ -12,20 +12,22 @@ describe('login test', () => {
 
     const mocks = [
       {
-        request: { query: LOGIN },
-        variables: {
-          email,
-          password,
+        request: {
+          query: LOGIN,
+          variables: {
+            email,
+            password,
+          },
         },
-        // result: {
-        //   data: {
-        //     completed: true,
-        //   },
-        // },
+        result: {
+          data: {
+            isCompleted: true,
+          },
+        },
       },
     ];
 
-    render<typeof mocks>(<Login />, mocks);
+    render(<Login />, mocks);
 
     const emailElem = await screen.findByPlaceholderText(
       '이메일을 입력해주세요.'
