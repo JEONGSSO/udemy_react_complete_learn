@@ -1,12 +1,21 @@
 import React, { useState, useEffect } from 'react';
 
 const Test = () => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<any>(null);
   const [searchQuery, setSearchQuery] = useState('good');
 
   useEffect(() => {
-    console.log('hello');
-  }, []);
+    if (searchQuery.length > 0) return;
+    const fetchFunc = async () => {
+      const res = (
+        await fetch(
+          `https://jsonplaceholder.typicode.com/user?username=${searchQuery}`
+        )
+      ).json();
+      setUser(res);
+    };
+    fetchFunc();
+  }, [searchQuery]);
 
   return (
     <div>
