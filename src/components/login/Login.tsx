@@ -1,8 +1,8 @@
-import React, { ChangeEvent, FormEvent, useState } from 'react';
+import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { useMutation } from '@apollo/client';
+import { pipe, filter, take } from '@fxts/core';
 
 import { BaseTextField, BaseButton } from '@/layout/common';
-// import LoginVar from '@/store/login';
 
 import { LOGIN } from './query';
 import { UserData } from './type';
@@ -35,6 +35,15 @@ const Login = () => {
     });
     setLogin(data.isCompleted);
   };
+
+  const numberrr = (num: number) => {
+    console.log(num);
+    return num % 2 === 0;
+  };
+
+  useEffect(() => {
+    pipe([1, 2, 3], filter(numberrr), console.log);
+  }, []);
 
   if (loading) return <div>loading...</div>;
 
