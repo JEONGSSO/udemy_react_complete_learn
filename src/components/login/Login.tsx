@@ -1,6 +1,6 @@
 import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { pipe, filter, take } from '@fxts/core';
+import { pipe, filter, take, map, reduce } from '@fxts/core';
 
 import { BaseTextField, BaseButton } from '@/layout/common';
 
@@ -38,11 +38,23 @@ const Login = () => {
 
   const numberrr = (num: number) => {
     console.log(num);
-    return num % 2 === 0;
+    return;
   };
 
   useEffect(() => {
-    pipe([1, 2, 3], filter(numberrr), console.log);
+    // pipe(
+    //   [1, 2, 3, 4, 5],
+    //   filter((a) => a % 2 === 0),
+    //   // map((a) => a + 10),
+    //   reduce((a, acc) => a + acc),
+    //   console.log
+    // );
+    pipe(
+      [1, 2, 3],
+      filter((num) => num % 2 === 0),
+      reduce((a, acc) => a + acc),
+      console.log
+    );
   }, []);
 
   if (loading) return <div>loading...</div>;
