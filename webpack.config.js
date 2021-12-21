@@ -63,7 +63,7 @@ module.exports = (env, argv) => {
     config = {
       ...config,
       devServer: {
-        port: 3000,
+        port: 3001,
         overlay: true,
         historyApiFallback: true,
       },
