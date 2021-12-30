@@ -37,13 +37,6 @@ const Login = () => {
   };
 
   useEffect(() => {
-    // pipe(
-    //   [1, 2, 3, 4, 5],
-    //   filter((a) => a % 2 === 0),
-    //   // map((a) => a + 10),
-    //   reduce((a, acc) => a + acc),
-    //   console.log
-    // );
     const even = (num: number) => num % 2 === 0;
     const add = (prev: number, acc: number) => prev + acc;
     const squareNums = pipe(

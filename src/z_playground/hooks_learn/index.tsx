@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 const Test = () => {
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<Promise<any> | null>(null);
   const [searchQuery, setSearchQuery] = useState('good');
 
   useEffect(() => {

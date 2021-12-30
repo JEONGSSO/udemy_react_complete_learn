@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useReactiveVar } from '@apollo/client';
-import { Box } from '@material-ui/core';
+import { Box } from '@mui/material';
 
 import routes from '@/routes';
 import loginVar from '@/store/login';

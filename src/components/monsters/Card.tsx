@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, RefObject } from 'react';
 import { CardListProps } from './CardList';
 
 import useIntersectionObserver from '@/hooks/useIntersectionObserver';
@@ -7,7 +7,7 @@ type Props = {
   monster: CardListProps['monsters'][0];
   length: number;
   index: number;
-  ref?: any;
+  ref?: RefObject<HTMLLIElement>;
 } & Pick<CardListProps, 'fetchMonsters'>;
 
 const Card = ({ monster, length, index, fetchMonsters }: Props) => {

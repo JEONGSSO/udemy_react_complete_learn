@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import CssBaseline from '@mui/material/CssBaseline';
 
 import makeData from './mocks';
 import Table from '.';

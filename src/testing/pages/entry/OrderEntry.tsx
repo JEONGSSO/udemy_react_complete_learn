@@ -1,7 +1,11 @@
 import { useOrderDetails } from '@/contexts/OrderDetails';
 import Options from './Options';
 
-const OrderEntry = ({ setOrderPhase }: any) => {
+const OrderEntry = ({
+  setOrderPhase,
+}: {
+  setOrderPhase?: (type: string) => void;
+}) => {
   const [orderDetails]: any = useOrderDetails();
 
   // disable order button if there aren't any scoops in order
@@ -13,7 +17,10 @@ const OrderEntry = ({ setOrderPhase }: any) => {
       <Options optionType={'scoops'} />
       <Options optionType={'toppings'} />
       <h2>Grand total: {orderDetails.totals.grandTotal}</h2>
-      <button disabled={orderDisabled} onClick={() => setOrderPhase('review')}>
+      <button
+        disabled={orderDisabled}
+        onClick={() => setOrderPhase?.('review')}
+      >
         Order Sundae!
       </button>
     </>

@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 
+import SHOP_DATA from './shop.data';
 import './collectionItem.scss';
 
-const collectionItem = ({ name, price, imageUrl }: any) => {
+type CollectionItemProps = Omit<typeof SHOP_DATA[0]['items'][0], 'id'>;
+
+const collectionItem = ({ name, price, imageUrl }: CollectionItemProps) => {
   return (
     <div className="collection-item">
       <div
