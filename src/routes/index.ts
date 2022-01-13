@@ -8,7 +8,6 @@ import { Shop, CollectionPreview, SignPage } from '@/components/shop';
 
 type RoutesProps = RouteProps & {
   name: string;
-  routes?: RoutesProps[];
 };
 
 const routes: RoutesProps[] = [
@@ -32,10 +31,11 @@ const routes: RoutesProps[] = [
     path: '/monsters',
     element: Monsters,
   },
-  // {
-  //   name: 'shop',
-  //   path: '/shop',
-  //   element: Shop,
+  {
+    name: 'shop',
+    path: '/shop',
+    element: Shop,
+  },
   //   routes: [
   //     {
   //       name: 'hats',

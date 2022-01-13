@@ -7,7 +7,7 @@ import { Sections } from './type';
 import './directory.scss';
 
 const Directory = () => {
-  const [sections, setsSections] = useState<Array<Sections>>([
+  const [sections] = useState<Array<Sections>>([
     {
       title: 'hats',
       imageUrl: 'https://i.ibb.co/cvpntL1/hats.png',
