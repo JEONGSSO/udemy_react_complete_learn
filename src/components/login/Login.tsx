@@ -1,6 +1,17 @@
 import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { pipe, filter, take, map, reduce, range, tap } from '@fxts/core';
+import {
+  pipe,
+  filter,
+  take,
+  map,
+  reduce,
+  range,
+  tap,
+  toAsync,
+  toArray,
+  join,
+} from '@fxts/core';
 
 import { BaseTextField, BaseButton } from '@/layout/common';
 import { SignUp } from '@/components/signUp';
@@ -56,6 +67,14 @@ const Login = () => {
       reduce(add),
       console.log
     );
+
+    const dummyArray = range(10);
+
+    const liNodes = (arr: number[]) => arr.map((num) => `<li>${num}</li>`);
+
+    const liNode = pipe(dummyArray, toArray, liNodes, join('\n'));
+
+    document.querySelector('#root')?.insertAdjacentHTML('beforeend', liNode);
   }, []);
 
   if (loading) return <div>loading...</div>;
